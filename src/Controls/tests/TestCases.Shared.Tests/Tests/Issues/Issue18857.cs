@@ -1,4 +1,4 @@
-﻿#if ANDROID
+#if ANDROID
 using NUnit.Framework;
 using UITest.Appium;
 using UITest.Core;
@@ -15,6 +15,7 @@ namespace Microsoft.Maui.TestCases.Tests.Issues
 
 		[Test]
 		[Category(UITestCategories.ImageButton)]
+		[FailsOnMacWhenRunningOnXamarinUITest("VerifyScreenshot method not implemented")]
 		public async Task GradientImageButtonBackground()
 		{
 			App.WaitForElement("TestImageButton");
@@ -22,7 +23,9 @@ namespace Microsoft.Maui.TestCases.Tests.Issues
 			App.Tap("TestRemoveBackgroundButton");
 			App.Tap("TestUpdateBackgroundButton");
 
-			await Task.Delay(500);
+			App.WaitForElement("TestImageButton");
+
+			await Task.Yield(); // Wait for Ripple Effect animation to complete.
 
 			VerifyScreenshot();
 		}
