@@ -698,6 +698,12 @@ namespace Microsoft.Maui.Controls
 				group.VisualElement = clone.VisualElement;
 				clone.Add(group.Clone());
 			}
+			
+			// Preserve specificity when cloning (issue #27202)
+			if (groups is VisualStateGroupList sourceList)
+			{
+				clone.Specificity = sourceList.Specificity;
+			}
 
 			if (VisualDiagnostics.IsEnabled && VisualDiagnostics.GetSourceInfo(groups) is SourceInfo info)
 				VisualDiagnostics.RegisterSourceInfo(clone, info.SourceUri, info.LineNumber, info.LinePosition);

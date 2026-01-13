@@ -15,6 +15,7 @@ namespace Microsoft.Maui.Controls
 	/// <summary>A <see cref="Microsoft.Maui.Controls.View"/> that displays text.</summary>
 	[ContentProperty(nameof(Text))]
 	[DebuggerDisplay("{GetDebuggerDisplay(), nq}")]
+	[ElementHandler<LabelHandler>]
 	public partial class Label : View, IFontElement, ITextElement, ITextAlignmentElement, ILineHeightElement, IElementConfiguration<Label>, IDecorableTextElement, IPaddingElement, ILabel
 	{
 		/// <summary>Bindable property for <see cref="HorizontalTextAlignment"/>.</summary>
@@ -86,7 +87,8 @@ namespace Microsoft.Maui.Controls
 					label.Text = null;
 			});
 
-		/// <include file="../../docs/Microsoft.Maui.Controls/Label.xml" path="//Member[@MemberName='TextTransform']/Docs/*" />
+		/// <summary>Gets or sets the text transformation applied to the label text. This is a bindable property.</summary>
+		/// <value>A <see cref="Microsoft.Maui.TextTransform"/> value that specifies how the text should be transformed.</value>
 		public TextTransform TextTransform
 		{
 			get { return (TextTransform)GetValue(TextTransformProperty); }
@@ -96,7 +98,7 @@ namespace Microsoft.Maui.Controls
 		/// <param name="source">The source parameter.</param>
 		/// <param name="textTransform">The textTransform parameter.</param>
 		public virtual string UpdateFormsText(string source, TextTransform textTransform)
-			=> TextTransformUtilites.GetTransformedText(source, textTransform);
+			=> TextTransformUtilities.GetTransformedText(source, textTransform);
 
 		/// <summary>Bindable property for <see cref="LineBreakMode"/>.</summary>
 		public static readonly BindableProperty LineBreakModeProperty = BindableProperty.Create(nameof(LineBreakMode), typeof(LineBreakMode), typeof(Label), LineBreakMode.WordWrap,
@@ -146,7 +148,10 @@ namespace Microsoft.Maui.Controls
 			set { SetValue(TextAlignmentElement.HorizontalTextAlignmentProperty, value); }
 		}
 
-		/// <summary>Gets or sets the LineBreakMode for the Label. This is a bindable property.</summary>
+		/// <summary>
+		/// Gets or sets the LineBreakMode for the Label.
+		/// The default value is <see cref="LineBreakMode.WordWrap"/>. This is a bindable property.
+		/// </summary>
 		public LineBreakMode LineBreakMode
 		{
 			get { return (LineBreakMode)GetValue(LineBreakModeProperty); }
@@ -168,7 +173,8 @@ namespace Microsoft.Maui.Controls
 			set { SetValue(TextElement.TextColorProperty, value); }
 		}
 
-		/// <include file="../../docs/Microsoft.Maui.Controls/Label.xml" path="//Member[@MemberName='CharacterSpacing']/Docs/*" />
+		/// <summary>Gets or sets the character spacing for the label text. This is a bindable property.</summary>
+		/// <value>A <see cref="double"/> representing the spacing between characters.</value>
 		public double CharacterSpacing
 		{
 			get { return (double)GetValue(TextElement.CharacterSpacingProperty); }
@@ -232,7 +238,8 @@ namespace Microsoft.Maui.Controls
 			set => SetValue(MaxLinesProperty, value);
 		}
 
-		/// <include file="../../docs/Microsoft.Maui.Controls/Label.xml" path="//Member[@MemberName='Padding']/Docs/*" />
+		/// <summary>Gets or sets the padding for the label. This is a bindable property.</summary>
+		/// <value>A <see cref="Thickness"/> structure that represents the padding around the label content.</value>
 		public Thickness Padding
 		{
 			get { return (Thickness)GetValue(PaddingProperty); }

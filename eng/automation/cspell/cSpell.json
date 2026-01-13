@@ -10,7 +10,18 @@
         "Appium",
         "XCUI",
         "Automator",
-        "cgmanifest"
+        "cgmanifest",
+        "Namescopes",
+        "sourcegen",
+        "Tizen",
+        "darc",
+        "Darc",
+        "xcrun",
+        "simctl",
+        "screencap",
+        "mlaunch",
+        "devicectl",
+        "xcdevice"
     ],
     "ignoreWords": [],
     "patterns": [

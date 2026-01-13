@@ -11,7 +11,7 @@
     <GitInfoReportImportance>high</GitInfoReportImportance>
     <MauiGenerateResourceDesigner>true</MauiGenerateResourceDesigner>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);CS1591;RS0041;RS0026;RS0027;RS0022</NoWarn>
+    <NoWarn>$(NoWarn);RS0041;RS0026;RS0027;RS0022</NoWarn>
     <NoWarn Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen' or $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(NoWarn);CA1420</NoWarn>
   </PropertyGroup>
 
@@ -44,6 +44,10 @@
     <ProjectReference Include="..\..\..\Core\src\Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\..\Essentials\src\Types\Shared\WebUtils.shared.cs" />
+  </ItemGroup>
+
   <ItemGroup Condition=" '$(_MauiDesignDllBuild)' == 'True' and '$(TargetFramework)' == '$(_MauiDotNetTfm)'">
     <ProjectReference Include="..\..\..\Controls\src\Core.Design\Controls.Core.Design.csproj" ReferenceOutputAssembly="false" />
   </ItemGroup>
@@ -66,6 +70,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetPlatformIdentifier)' == 'android' ">
+    <PackageReference Include="Xamarin.AndroidX.DynamicAnimation" />
     <AndroidResource Include="Compatibility\Android\Resources\layout\flyoutcontent.axml" />
     <AndroidResource Include="Compatibility\Android\Resources\layout\shellcontent.axml" />
   </ItemGroup>
